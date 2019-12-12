@@ -39,13 +39,6 @@ public class StudentInfoAdapter extends RecyclerView.Adapter<StudentInfoAdapter.
         holder.tvLocation.setText(studentInfo.getLocation());
         holder.tvGender.setText(studentInfo.getGender());
 
-        holder.imgProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Hello this is: " + holder.tvName.getText().toString() , Toast.LENGTH_SHORT).show();
-            }
-        });
-
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
