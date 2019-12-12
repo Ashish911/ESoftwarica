@@ -1,7 +1,6 @@
 package com.example.esoftwarica;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.UserInfoViewHolder>  {
+public class StudentInfoAdapter extends RecyclerView.Adapter<StudentInfoAdapter.UserInfoViewHolder>  {
 
     Context mContext;
-    List<UserInfo> userInfoList;
+    List<StudentInfo> studentInfoList;
 
-
-    public UserInfoAdapter(Context mContext, List<UserInfo> userInfoList){
-        this.mContext = mContext;
-        this.userInfoList = userInfoList;
+    public StudentInfoAdapter(List<StudentInfo> studentInfoList) {
+        this.studentInfoList = studentInfoList;
     }
 
     @NonNull
@@ -34,14 +31,13 @@ public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.UserIn
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final UserInfoViewHolder holder, int position) {
-        final UserInfo userInfo = userInfoList.get(position);
-        holder.imgProfile.setImageResource(userInfo.getImageId());
-        holder.tvName.setText(userInfo.getName());
-        holder.tvAge.setText(userInfo.getAge());
-        holder.tvLocation.setText(userInfo.getLocation());
-        holder.tvGender.setText(userInfo.getGender());
-
+    public void onBindViewHolder(@NonNull final UserInfoViewHolder holder, final int position) {
+        final StudentInfo studentInfo = studentInfoList.get(position);
+        holder.imgProfile.setImageResource(studentInfo.getImageId());
+        holder.tvName.setText(studentInfo.getName());
+        holder.tvAge.setText(studentInfo.getAge());
+        holder.tvLocation.setText(studentInfo.getLocation());
+        holder.tvGender.setText(studentInfo.getGender());
 
         holder.imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,15 +46,24 @@ public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.UserIn
             }
         });
 
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                studentInfoList.remove(studentInfo);
+
+                notifyItemRemoved(position);
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return userInfoList.size();
+        return studentInfoList.size();
     }
 
     public class UserInfoViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgProfile;
+        ImageView imgProfile,imgDelete;
         TextView tvName, tvAge, tvLocation, tvGender;
         public UserInfoViewHolder(@NonNull View itemView){
 
@@ -68,6 +73,7 @@ public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.UserIn
             tvAge = itemView.findViewById(R.id.textView2);
             tvLocation = itemView.findViewById(R.id.textView3);
             tvGender = itemView.findViewById(R.id.textView4);
+            imgDelete = itemView.findViewById(R.id.imageView2);
         }
     }
 

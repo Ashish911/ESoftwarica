@@ -1,6 +1,6 @@
 package com.example.esoftwarica;
 
-public class UserInfo {
+public class StudentInfo {
 
     private String Name;
     private String Age;
@@ -11,7 +11,7 @@ public class UserInfo {
     /**
      * Constructor
      */
-    public UserInfo(String name, String Age, String Location, String Gender, int ImageId){
+    public StudentInfo(String name, String Age, String Location, String Gender, int ImageId){
         this.Name = name;
         this.Age = Age;
         this.Location = Location;
